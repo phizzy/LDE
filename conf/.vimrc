@@ -1,8 +1,12 @@
 " .vimrc中有很多<>括起来的符号，比如<C-S-A>等，如果不懂，:help keycodes
-:hi CursorLine   cterm=NONE ctermbg=darkgray ctermfg=cyan guibg=darkred guifg=white " 显示鼠标行
-au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
+" :hi CursorLine   cterm=NONE ctermbg=darkgray ctermfg=cyan guibg=darkred guifg=white " 显示鼠标行
+" au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
+" set statusline=%F%*\ %y[%{&fenc}]\ %2*%r%m%*\ %l,%c\ %=%l/%L\ (%p%%)%*\%{strftime('%Y-%m-%d-%H:%M')}
+" set statusline=\ %<%F[%1*%M%*%n%R%H]%=\ %y\ %0(%{&fileformat}\ %{&encoding}\ %c:%l/%L%)\    " 设置在状态行显示的信息
 
 colorscheme desert                " 设定配色方案 /usr/share/vim/vim73/colors/
+" set color
+set t_Co=256
 set autochdir               " 自动切换当前目录为当前文件所在的目录
 set autoindent                           " 设置自动缩进功能
 set autoread                      " 设置自动读取配置文件
@@ -92,8 +96,6 @@ set smarttab
 set expandtab
 set softtabstop=4           " 使得按退格键时可以一次删掉 4 个空格
 set tabstop=4               " 设定 tab 长度为 4
-set statusline=%F%*\ %y[%{&fenc}]\ %2*%r%m%*\ %l,%c\ %=%l/%L\ (%p%%)%*\%{strftime('%Y-%m-%d-%H:%M')}
-set statusline=\ %<%F[%1*%M%*%n%R%H]%=\ %y\ %0(%{&fileformat}\ %{&encoding}\ %c:%l/%L%)\    " 设置在状态行显示的信息
 set t_vb=                   " 置空错误铃声的终端代码
 set termencoding=utf-8
 set viminfo='10,\"100,:20,%,n~/.viminfo
@@ -145,6 +147,28 @@ nmap <leader>fm :set ft=mako<CR>
 " Remove the Windows ^M - when the encodings gets messed up
 noremap <leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
+" To automatically update the ctags file when a file is written
+" <C-]>, vim will jump to function’s definition
+" press <C-t> to climb back up the tree
+function! DelTagOfFile(file)
+  let fullpath = a:file
+  let cwd = getcwd()
+  let tagfilename = cwd . "/tags"
+  let f = substitute(fullpath, cwd . "/", "", "")
+  let f = escape(f, './')
+  let cmd = 'sed -i "/' . f . '/d" "' . tagfilename . '"'
+  let resp = system(cmd)
+endfunction
+function! UpdateTags()
+  let f = expand("%:p")
+  let cwd = getcwd()
+  let tagfilename = cwd . "/tags"
+  let cmd = 'ctags -a -f ' . tagfilename . ' --c++-kinds=+p --fields=+iaS --extra=+q ' . '"' . f . '"'
+  call DelTagOfFile(f)
+  let resp = system(cmd)
+endfunction
+autocmd BufWritePost *.cpp,*.h,*.c,*.php,*.js call UpdateTags()
+
 " 打开文件类型检测, vundle 要求必须关闭
 filetype off
 " vundle
@@ -156,6 +180,14 @@ Bundle 'gmarik/vundle'
 
 " JS代码格式化插件；
 Bundle '_jsbeautify'
+" vim plugins for HTML and CSS hi-speed coding
+Bundle 'Emmet.vim'
+" lean & mean status/tabline for vim that's light as air
+Bundle 'https://github.com/bling/vim-airline.git'
+" Vim plugin that displays tags in a window, ordered by class etc
+Bundle 'https://github.com/majutsushi/tagbar.git'
+" Fuzzy file, buffer, mru, tag, etc finder
+Bundle 'https://github.com/kien/ctrlp.vim.git'
 
 " 打开插件功能和缩进功能 vundle required
 filetype plugin indent on
