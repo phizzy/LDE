@@ -1,0 +1,45 @@
+#!/bin/sh
+
+MYPassWord="sudo pass"
+ask_add() {
+    read -p "为您自动加载$1? [y|n]   " var_press
+    if [ -n "$var_press" -a $var_press = "y" ]
+    then
+        add "$1"
+    fi
+}
+
+check_dir() {
+    local tmp="/home/$USER/$1"
+    if [ ! -d "$tmp" ]
+    then
+        mkdir -p "$tmp"
+    fi
+}
+
+i_mount() {
+    check_dir "$4"
+    echo "$MYPassWord" | sudo -S mount -t smbfs -o username="$1",password="$2",rw,uid=1000,gid=1000 "$3" "$4"
+}
+
+if [ $# -lt 1 ]
+then
+    ask_add "xp"
+    exit 1
+fi
+
+case $1 in
+    all)
+        add xp
+        ;;
+    xp)
+        tmpdir="DIR"
+        tmpusername="$USER"
+        tmppassword=""
+        tmpremote="//IP/PATH"
+        i_mount "$tmpusername" "$tmppassword" "$tmpremote" "$tmpdir"
+        ;;
+    *)
+        echo $0 dir
+        ;;
+esac
