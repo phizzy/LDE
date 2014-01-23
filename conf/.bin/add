@@ -4,7 +4,7 @@
 # xp-username = pihizi
 # xp-password = abcd
 # xp-url = \\192.168.56.101\projects
-myini=$(pwd)"/.bin/add.ini"
+myini="/home/$USER/.bin/add.ini"
 
 if [ $# -lt 1 ]
 then
