@@ -4,7 +4,7 @@
 " set statusline=%F%*\ %y[%{&fenc}]\ %2*%r%m%*\ %l,%c\ %=%l/%L\ (%p%%)%*\%{strftime('%Y-%m-%d-%H:%M')}
 " set statusline=\ %<%F[%1*%M%*%n%R%H]%=\ %y\ %0(%{&fileformat}\ %{&encoding}\ %c:%l/%L%)\    " 设置在状态行显示的信息
 
-colorscheme desert                " 设定配色方案 /usr/share/vim/vim73/colors/
+colorscheme pablo                " 设定配色方案 /usr/share/vim/vim73/colors/
 " set color
 set t_Co=256
 set autochdir               " 自动切换当前目录为当前文件所在的目录
@@ -181,13 +181,26 @@ Bundle 'gmarik/vundle'
 " JS代码格式化插件；
 Bundle '_jsbeautify'
 " vim plugins for HTML and CSS hi-speed coding
-Bundle 'Emmet.vim'
+" Bundle 'Emmet.vim'
 " lean & mean status/tabline for vim that's light as air
 Bundle 'https://github.com/bling/vim-airline.git'
 " Vim plugin that displays tags in a window, ordered by class etc
 Bundle 'https://github.com/majutsushi/tagbar.git'
+nmap <leader>st :TagbarToggle<CR>
 " Fuzzy file, buffer, mru, tag, etc finder
-Bundle 'https://github.com/kien/ctrlp.vim.git'
+"Bundle 'https://github.com/kien/ctrlp.vim.git'
+" A code-completion engine for Vim
+Bundle 'https://github.com/Valloric/YouCompleteMe.git'
+" tern for vim
+Bundle 'https://github.com/marijnh/tern_for_vim.git'
+" Official Mirror of UltiSnips trunk on LaunchPad. 
+Bundle 'https://github.com/SirVer/ultisnips.git'
+" YCM和ultisnips快捷键冲突
+let g:UltiSnipsExpandTrigger = '<C-j>'
+let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
+" 增加自定义snippets
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "CustomSnips"]
+
 
 " 打开插件功能和缩进功能 vundle required
 filetype plugin indent on
