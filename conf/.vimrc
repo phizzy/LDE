@@ -179,6 +179,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " JS代码格式化插件；
+" nnoremap <silent> <leader>_ff :call g:_Jsbeautify()<cr>
 Bundle '_jsbeautify'
 " vim plugins for HTML and CSS hi-speed coding
 " Bundle 'Emmet.vim'
