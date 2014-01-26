@@ -185,6 +185,7 @@ function! UpdateTags()
   let resp = system(cmd)
 endfunction
 autocmd BufWritePost *.js call UpdateTags()
+"set tags=./tags,tags
 
 " 打开文件类型检测, vundle 要求必须关闭
 filetype off
@@ -222,6 +223,8 @@ nmap <leader>st :TagbarToggle<CR>
 Bundle 'https://github.com/tpope/vim-surround.git'
 " Inserts matching bracket, paren, brace or quote
 ""Bundle 'https://github.com/vim-scripts/AutoClose.git'
+" Display function name in the title bar
+Bundle 'ctags.vim'
 
 " 打开插件功能和缩进功能 vundle required
 filetype plugin indent on
