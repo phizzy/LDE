@@ -138,6 +138,9 @@ endtry
 "修改leader键为逗号"
 let mapleader=",,"
 
+" 自定义文件类型
+au BufRead,BufNewFile *.tpl set filetype=tpl.html
+
 "文件类型切换
 nmap <leader>fj :set ft=javascript<CR>
 nmap <leader>fc :set ft=css<CR>

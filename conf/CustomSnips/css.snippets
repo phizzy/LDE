@@ -1,0 +1,117 @@
+###########################################################################
+#                            TextMate Snippets                            #
+###########################################################################
+
+# IE hack start
+snippet ie8- "IE8-: Media Query Hacks"
+@media \0screen\,screen\9 {
+	${0:code segment}
+}
+endsnippet
+
+snippet ie8 "IE8 only: Media Query Hacks"
+@media \0screen {
+	${0:code segment}
+}
+endsnippet
+
+snippet ie7- "IE7-: Media Query Hacks"
+@media screen\9 {
+	${0:code segment}
+}
+endsnippet
+
+snippet ie10 "IE10 only: Media Query Hacks"
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+	${0:code segment}
+}
+endsnippet
+
+# CSS3 Selectors
+
+# CSS3 Box Model
+
+# CSS3 Backgrounds and borders
+snippet background-size "Specifies the size of the background image"
+background-size: ${1:
+	80%, 20%
+	140px 100px
+	contain: 按比例将图片缩放到最大尺寸以使其高宽都在背景区域里面
+	cover: 按比例将图片缩放到最小尺寸以使其完整覆盖背景区域};
+endsnippet
+snippet background-origin "Specifies the positioning area of the background images"
+background-origin: ${1:content-box|padding-box|border-box};
+endsnippet
+snippet background-clip "Specifies the painting area of the background images"
+background-clip: ${1:content-box|padding-box|border-box};
+endsnippet
+
+snippet background "Linear Gradients (angle, color-stop1, color-stop2)" !b
+background: linear-gradient(${1:
+	red, blue /*Top to Bottom (this is default)*/
+	to right, red , blue /*Left to Right*/
+	to bottom right, red , blue
+});
+endsnippet
+
+snippet box-sizing "allow you to switch box models"
+box-sizing: ${1:border-box|content-box}
+endsnippet
+
+# CSS3 Image Values and Replaced Content
+
+# CSS3 Text Effects
+
+# CSS3 2D/3D Transformations
+snippet transform " lets an element change shape, size and position"
+transform: ${1:
+	translate(50px,100px) /*translate(x,y)	Defines a 2D translation, moving the element along the X- and the Y-axis*/
+	rotate(30deg) /*rotate(angle)	Defines a 2D rotation, the angle is specified in the parameter*/
+	scale(2,4) /*scale(x,y)	Defines a 2D scale transformation, changing the elements width and height*/
+	skew(30deg,20deg) /*skew(x-angle,y-angle)	Defines a 2D skew transformation along the X- and the Y-axis*/
+	matrix(0.866,0.5,-0.5,0.866,0,0) /*matrix(n,n,n,n,n,n)	Defines a 2D transformation, using a matrix of six values*/};
+endsnippet
+snippet transition "add an effect when changing from one style to another, without using Flash animations or JavaScripts"
+transition: ${1:width 1s linear 2s /*transition-property transition-duration transition-timing-function transition-delay*/};
+endsnippet
+
+# CSS3 Animations
+snippet animation "we can create animations, which can replace animated images, Flash animations, and JavaScripts in existing web pages."
+animation: ${1:${2:mykeyframes} 0 'ease' 0 1 'normal' 'running'};
+${3:
+/*
+	animation-name: Specifies the name of the @keyframes animation
+	animation-duration: Specifies how many seconds or milliseconds an animation takes to complete one cycle. Default 0
+	animation-timing-function: Describes how the animation will progress over one cycle of its duration. Default "ease"
+	animation-delay: Specifies when the animation will start. Default 0
+	animation-iteration-count: Specifies the number of times an animation is played. Default 1
+		infinite	Specifies that the animation should be played infinite times (for ever)
+	animation-direction: Specifies whether or not the animation should play in reverse on alternate cycles. Default "normal"
+	animation-play-state: Specifies whether the animation is running or paused. Default "running"
+*/}
+${4:@keyframes $2 {
+${5:
+	0%: {
+		${6: code segment}
+	}
+	25%: {
+		$6
+	}
+	50%: {
+		$6
+	}
+	75%: {
+		$6
+	}
+	100%: {
+		$6
+	}
+}
+}}
+endsnippet
+
+# CSS3 Multiple Column Layout
+
+# CSS3 User Interface
+
+# vim:ft=snippets:

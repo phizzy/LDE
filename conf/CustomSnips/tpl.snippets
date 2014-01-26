@@ -1,0 +1,62 @@
+###########################################################################
+#                            TextMate Snippets                            #
+###########################################################################
+
+extends html
+
+# smarty 常量
+snippet smarty.now "$smarty.now" 
+{$smarty.now}
+endsnippet
+
+snippet smarty.ldelim "ldelim" 
+{ldelim}
+endsnippet
+
+snippet smarty.rdelim "rdelim" 
+{rdelim}
+endsnippet
+
+snippet for "Smarty for"
+{for ${1:$var}=${2:$start} to ${3:$end}${4: step ${5:$step}}}
+	${6:code segment}
+${7:{forelse}
+	${8:code segment}}
+{/for}
+endsnippet
+
+snippet foreach "Smarty foreach"
+{foreach ${1:$arrayvar} as ${2:$key=>}${3:$value}}
+	${4:code segment}
+${5:{foreachelse}
+	${6:code segment}}
+{/foreach}
+endsnippet
+
+snippet widget "Smarty create widget"
+{widget ${1:wData=""}}{strip}
+${2:code segment}
+${3:<script>F.use('./${4:name}.js');</script>}
+{/strip}{/widgetk}
+endsnippet
+
+snippet if "Smarty if"
+{if ${1:condition}}
+	${2:code segment}
+{/if}
+endsnippet
+
+snippet if "Smarty if else"
+{if ${1:condition}}
+	${2:code segment}
+{else}
+	${3:code segment}
+{/if}
+endsnippet
+
+snippet widget "Smarty use widget"
+{widget name="${1:widget_name}"}
+endsnippet
+
+# vim:ft=snippets:
+
