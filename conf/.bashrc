@@ -71,12 +71,12 @@ if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
-alias stylus='stylus --include-css -o .'
 alias diff='colordiff --exclude=CVS --exclude=.svn'
 alias grep='grep --color=auto'
 alias ll='ls -l'
 alias la='ls -A'
 alias vi='vim'
+alias gi='grunt-init'
 export EDITOR=vim
 
 export PATH=$HOME/.bin:$PATH

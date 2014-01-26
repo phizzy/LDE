@@ -147,6 +147,20 @@ nmap <leader>fm :set ft=mako<CR>
 " Remove the Windows ^M - when the encodings gets messed up
 noremap <leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
+" 光标取词
+function! Get_cursor_word() 
+    let expl=system('sdcv -n ' . 
+                \  expand("<cword>")) 
+    windo if 
+                \ expand("%")=="diCt-tmp" | 
+                \ q!|endif 
+    25vsp diCt-tmp 
+    setlocal buftype=nofile bufhidden=hide noswapfile 
+    1s/^/\=expl/ 
+    1 
+endfunction 
+nmap F :call Get_cursor_word()<CR>
+
 " To automatically update the ctags file when a file is written
 " <C-]>, vim will jump to function’s definition
 " press <C-t> to climb back up the tree
@@ -167,7 +181,7 @@ function! UpdateTags()
   call DelTagOfFile(f)
   let resp = system(cmd)
 endfunction
-autocmd BufWritePost *.cpp,*.h,*.c,*.php,*.js call UpdateTags()
+autocmd BufWritePost *.js call UpdateTags()
 
 " 打开文件类型检测, vundle 要求必须关闭
 filetype off
@@ -185,9 +199,6 @@ Bundle '_jsbeautify'
 " Bundle 'Emmet.vim'
 " lean & mean status/tabline for vim that's light as air
 Bundle 'https://github.com/bling/vim-airline.git'
-" Vim plugin that displays tags in a window, ordered by class etc
-Bundle 'https://github.com/majutsushi/tagbar.git'
-nmap <leader>st :TagbarToggle<CR>
 " Fuzzy file, buffer, mru, tag, etc finder
 "Bundle 'https://github.com/kien/ctrlp.vim.git'
 " A code-completion engine for Vim
@@ -201,7 +212,13 @@ let g:UltiSnipsExpandTrigger = '<C-j>'
 let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
 " 增加自定义snippets
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "CustomSnips"]
-
+" Vim plugin that displays tags in a window, ordered by class etc
+Bundle 'https://github.com/majutsushi/tagbar.git'
+nmap <leader>st :TagbarToggle<CR>
+" quoting/parenthesizing made simple
+Bundle 'https://github.com/tpope/vim-surround.git'
+" Inserts matching bracket, paren, brace or quote
+""Bundle 'https://github.com/vim-scripts/AutoClose.git'
 
 " 打开插件功能和缩进功能 vundle required
 filetype plugin indent on
