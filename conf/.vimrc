@@ -215,7 +215,7 @@ Bundle 'https://github.com/SirVer/ultisnips.git'
 let g:UltiSnipsExpandTrigger = '<C-j>'
 let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
 " 增加自定义snippets
-let g:UltiSnipsSnippetDirectories=["UltiSnips", "CustomSnips"]
+let g:UltiSnipsSnippetDirectories=["CustomSnips", "UltiSnips"]
 " Vim plugin that displays tags in a window, ordered by class etc
 Bundle 'https://github.com/majutsushi/tagbar.git'
 nmap <leader>st :TagbarToggle<CR>
@@ -225,6 +225,8 @@ Bundle 'https://github.com/tpope/vim-surround.git'
 ""Bundle 'https://github.com/vim-scripts/AutoClose.git'
 " Display function name in the title bar
 Bundle 'ctags.vim'
+" Source code browser (supports C/C++, java, perl, python, tcl, sql, php, etc)
+Bundle 'taglist.vim'
 
 " 打开插件功能和缩进功能 vundle required
 filetype plugin indent on
