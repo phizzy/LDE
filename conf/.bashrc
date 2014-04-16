@@ -51,14 +51,6 @@ esac
 #    . ~/.bash_aliases
 #fi
 
-# enable color support of ls and also add handy aliases
-if [ "$TERM" != "dumb" ]; then
-    eval "`dircolors -b`"
-    alias ls='ls --color=auto'
-    #alias dir='ls --color=auto --format=vertical'
-    #alias vdir='ls --color=auto --format=long'
-fi
-
 # some more ls aliases
 #alias l='ls -CF'
 
@@ -75,8 +67,11 @@ alias diff='colordiff --exclude=CVS --exclude=.svn'
 alias grep='grep --color=auto'
 alias ll='ls -l'
 alias la='ls -A'
+alias vim='/usr/local/Cellar/vim/7.4.253/bin/vim'
 alias vi='vim'
 alias gi='grunt-init'
+alias goagent='python /Users/zhuhongjie/GoAgent/3.1.9/local/proxy.py &>/dev/null 2>&1 &'
+alias v='vagrant'
 export EDITOR=vim
 
 export PATH=$HOME/.bin:$PATH
@@ -96,3 +91,5 @@ export PS1="\[\e[36;1m\]\u@\[\e[32;1m\]\H:\w\[\e[0m\]\n$ "
 #use the `-Wl,--rpath -Wl,LIBDIR' linker flag
 bind '"\x1b\x5b\x41":history-search-backward'
 bind '"\x1b\x5b\x42":history-search-forward'
+
+export PATH=/usr/local/bin:$PATH

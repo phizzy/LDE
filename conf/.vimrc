@@ -164,29 +164,6 @@ function! Get_cursor_word()
 endfunction 
 nmap F :call Get_cursor_word()<CR>
 
-" To automatically update the ctags file when a file is written
-" <C-]>, vim will jump to function’s definition
-" press <C-t> to climb back up the tree
-function! DelTagOfFile(file)
-  let fullpath = a:file
-  let cwd = getcwd()
-  let tagfilename = cwd . "/tags"
-  let f = substitute(fullpath, cwd . "/", "", "")
-  let f = escape(f, './')
-  let cmd = 'sed -i "/' . f . '/d" "' . tagfilename . '"'
-  let resp = system(cmd)
-endfunction
-function! UpdateTags()
-  let f = expand("%:p")
-  let cwd = getcwd()
-  let tagfilename = cwd . "/tags"
-  let cmd = 'ctags -a -f ' . tagfilename . ' --c++-kinds=+p --fields=+iaS --extra=+q ' . '"' . f . '"'
-  call DelTagOfFile(f)
-  let resp = system(cmd)
-endfunction
-autocmd BufWritePost *.js call UpdateTags()
-"set tags=./tags,tags
-
 " 打开文件类型检测, vundle 要求必须关闭
 filetype off
 " vundle
@@ -226,7 +203,34 @@ Bundle 'https://github.com/tpope/vim-surround.git'
 " Display function name in the title bar
 Bundle 'ctags.vim'
 " Source code browser (supports C/C++, java, perl, python, tcl, sql, php, etc)
-Bundle 'taglist.vim'
+" To automatically update the ctags file when a file is written
+" <C-]>, vim will jump to function’s definition
+" press <C-t> to climb back up the tree
+function! DelTagOfFile(file)
+  let fullpath = a:file
+  let cwd = getcwd()
+  let tagfilename = cwd . "/tags"
+  let f = substitute(fullpath, cwd . "/", "", "")
+  let f = escape(f, './')
+  let cmd = 'sed -i "/' . f . '/d" "' . tagfilename . '"'
+  let resp = system(cmd)
+endfunction
+function! UpdateTags()
+  let f = expand("%:p")
+  let cwd = getcwd()
+  let tagfilename = cwd . "/tags"
+  let cmd = 'ctags -a -f ' . tagfilename . ' --c++-kinds=+p --fields=+iaS --extra=+q ' . '"' . f . '"'
+  call DelTagOfFile(f)
+  let resp = system(cmd)
+endfunction
+"autocmd BufWritePost *.js call UpdateTags()
+autocmd BufWritePost *.php call UpdateTags()
+"set tags=./tags,tags
+
+"Bundle 'taglist.vim'
 
 " 打开插件功能和缩进功能 vundle required
 filetype plugin indent on
+
+" ctrl + space 映射到 ctrl+x ctrl+o 进行autocomplete
+imap <C-Space> <C-x><C-o>
