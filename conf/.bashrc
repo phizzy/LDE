@@ -71,7 +71,7 @@ alias vim='/usr/local/Cellar/vim/7.4.253/bin/vim'
 alias vi='vim'
 alias gi='grunt-init'
 alias goagent='python /Users/zhuhongjie/GoAgent/3.1.9/local/proxy.py &>/dev/null 2>&1 &'
-alias v='vagrant'
+alias v='cd ~/VagrantEnv && echo "Warn: 目录切换至~/VagrantEnv" && vagrant'
 export EDITOR=vim
 
 export PATH=$HOME/.bin:$PATH
