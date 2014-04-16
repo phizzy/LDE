@@ -65,8 +65,8 @@ fi
 
 alias diff='colordiff --exclude=CVS --exclude=.svn'
 alias grep='grep --color=auto'
-alias ll='ls -l'
-alias la='ls -A'
+alias ll='ls -lh'
+alias la='ls -Alh'
 alias vim='/usr/local/Cellar/vim/7.4.253/bin/vim'
 alias vi='vim'
 alias gi='grunt-init'
