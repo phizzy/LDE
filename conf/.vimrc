@@ -140,6 +140,7 @@ let mapleader=",,"
 
 " 自定义文件类型
 au BufRead,BufNewFile *.tpl set filetype=tpl.html
+au BufRead,BufNewFile *.phtml set filetype=phtml.html
 
 "文件类型切换
 nmap <leader>fj :set ft=javascript<CR>
@@ -163,6 +164,27 @@ function! Get_cursor_word()
     1 
 endfunction 
 nmap F :call Get_cursor_word()<CR>
+
+function! DelTagOfFile(file)
+  let fullpath = a:file
+  let cwd = getcwd()
+  let tagfilename = cwd . "/tags"
+  let f = substitute(fullpath, cwd . "/", "", "")
+  let f = escape(f, './')
+  let cmd = 'sed -i "/' . f . '/d" "' . tagfilename . '"'
+  let resp = system(cmd)
+endfunction
+function! UpdateTags()
+  let f = expand("%:p")
+  let cwd = getcwd()
+  let tagfilename = cwd . "/tags"
+  let cmd = 'ctags -a -f ' . tagfilename . ' --c++-kinds=+p --fields=+iaS --extra=+q ' . '"' . f . '"'
+  call DelTagOfFile(f)
+  let resp = system(cmd)
+endfunction
+"autocmd BufWritePost *.js call UpdateTags()
+autocmd BufWritePost *.php call UpdateTags()
+"set tags=./tags,tags
 
 " 打开文件类型检测, vundle 要求必须关闭
 filetype off
@@ -190,9 +212,9 @@ Bundle 'https://github.com/marijnh/tern_for_vim.git'
 Bundle 'https://github.com/SirVer/ultisnips.git'
 " YCM和ultisnips快捷键冲突
 let g:UltiSnipsExpandTrigger = '<C-j>'
-let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
+let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 " 增加自定义snippets
-let g:UltiSnipsSnippetDirectories=["CustomSnips", "UltiSnips"]
+let g:UltiSnipsSnippetDirectories=['CustomSnips', 'UltiSnips']
 " Vim plugin that displays tags in a window, ordered by class etc
 Bundle 'https://github.com/majutsushi/tagbar.git'
 nmap <leader>st :TagbarToggle<CR>
@@ -206,31 +228,10 @@ Bundle 'ctags.vim'
 " To automatically update the ctags file when a file is written
 " <C-]>, vim will jump to function’s definition
 " press <C-t> to climb back up the tree
-function! DelTagOfFile(file)
-  let fullpath = a:file
-  let cwd = getcwd()
-  let tagfilename = cwd . "/tags"
-  let f = substitute(fullpath, cwd . "/", "", "")
-  let f = escape(f, './')
-  let cmd = 'sed -i "/' . f . '/d" "' . tagfilename . '"'
-  let resp = system(cmd)
-endfunction
-function! UpdateTags()
-  let f = expand("%:p")
-  let cwd = getcwd()
-  let tagfilename = cwd . "/tags"
-  let cmd = 'ctags -a -f ' . tagfilename . ' --c++-kinds=+p --fields=+iaS --extra=+q ' . '"' . f . '"'
-  call DelTagOfFile(f)
-  let resp = system(cmd)
-endfunction
-"autocmd BufWritePost *.js call UpdateTags()
-autocmd BufWritePost *.php call UpdateTags()
-"set tags=./tags,tags
-
 "Bundle 'taglist.vim'
 
 " 打开插件功能和缩进功能 vundle required
 filetype plugin indent on
 
 " ctrl + space 映射到 ctrl+x ctrl+o 进行autocomplete
-imap <C-Space> <C-x><C-o>
+"imap <C-Space> <C-x><C-o>
