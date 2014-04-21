@@ -1,0 +1,26 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+  config.vm.define "Gini" do |gini|
+
+      gini.vm.box = "gini"
+      gini.vm.network :private_network, ip: "192.168.56.10"
+      gini.vm.boot_timeout = 600
+
+      gini.vm.provider :virtualbox do |gv|
+          gv.name = "Hongjie's Gini Server"
+          gv.gui = false
+          gv.customize ["modifyvm", :id, "--memory", "1024"]
+      end
+
+      gini.vm.provision "docker" do |docker|
+      end
+
+  end
+
+end
