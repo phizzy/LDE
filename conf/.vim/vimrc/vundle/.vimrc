@@ -22,10 +22,10 @@ Bundle 'https://github.com/bling/vim-airline.git'
 "Bundle 'https://github.com/kien/ctrlp.vim.git'
 
 " A code-completion engine for Vim
-Bundle 'https://github.com/Valloric/YouCompleteMe.git'
+"Bundle 'https://github.com/Valloric/YouCompleteMe.git'
 
 " tern for vim
-Bundle 'https://github.com/marijnh/tern_for_vim.git'
+"Bundle 'https://github.com/marijnh/tern_for_vim.git'
 
 " Official Mirror of UltiSnips trunk on LaunchPad. 
 Bundle 'https://github.com/SirVer/ultisnips.git'
@@ -33,7 +33,7 @@ Bundle 'https://github.com/SirVer/ultisnips.git'
 let g:UltiSnipsExpandTrigger = '<C-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 " 增加自定义snippets
-let g:UltiSnipsSnippetDirectories=['CustomSnips', 'UltiSnips']
+let g:UltiSnipsSnippetDirectories=['~/.vimrc/CustomSnips', 'UltiSnips']
 
 " Vim plugin that displays tags in a window, ordered by class etc
 Bundle 'https://github.com/majutsushi/tagbar.git'
