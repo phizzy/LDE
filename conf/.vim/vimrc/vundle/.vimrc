@@ -9,18 +9,6 @@ call vundle#rc()
 " required!
 Bundle 'gmarik/vundle'
 
-" JS代码格式化插件；
-" nnoremap <silent> <leader>_ff :call g:_Jsbeautify()<cr>
-"Bundle '_jsbeautify'
-
-" vim plugins for HTML and CSS hi-speed coding
-" Bundle 'Emmet.vim'
-" lean & mean status/tabline for vim that's light as air
-"Bundle 'https://github.com/bling/vim-airline.git'
-
-" quoting/parenthesizing made simple
-"Bundle 'https://github.com/tpope/vim-surround.git'
-
 " Official Mirror of UltiSnips trunk on LaunchPad. 
 Bundle 'https://github.com/SirVer/ultisnips.git'
 Bundle "honza/vim-snippets"
@@ -28,6 +16,18 @@ let g:UltiSnipsExpandTrigger = '<C-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 " 增加自定义snippets
 let g:UltiSnipsSnippetDirectories = ['CustomSnips', 'UltiSnips']
+
+" JS代码格式化插件；
+nnoremap <silent> <leader>_jb :call g:_Jsbeautify()<cr>
+Bundle '_jsbeautify'
+
+" vim plugins for HTML and CSS hi-speed coding
+Bundle 'Emmet.vim'
+" lean & mean status/tabline for vim that's light as air
+Bundle 'https://github.com/bling/vim-airline.git'
+
+" quoting/parenthesizing made simple
+Bundle 'https://github.com/tpope/vim-surround.git'
 
 " Fuzzy file, buffer, mru, tag, etc finder
 "Bundle 'https://github.com/kien/ctrlp.vim.git'

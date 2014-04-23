@@ -6,4 +6,5 @@ source ~/.vim/vimrc/vundle/.vimrc
 
 " 自定义文件类型
 au BufRead,BufNewFile *.phtml set filetype=php.phtml.html
+au BufRead,BufNewFile *.less set filetype=less.css
 

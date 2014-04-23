@@ -9,10 +9,8 @@ Local Dev Environment
     * sudo add-apt-repository ppa:fcwu-tw/ppa
     * sudo apt-get update
     * sudo apt-get install vim
-
 * Setup Vundle
     * git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-
 * Setup YouCompleteMe
     * git clone https://github.com/Valloric/YouCompleteMe.git ~/.vim/bundle/YouCompleteMe
     * cd ~/.vim/bundle/YouCompleteMe
