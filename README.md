@@ -16,3 +16,5 @@ Local Dev Environment
     * sudo apt-get install build-essential cmake
     * sudo apt-get install python-dev
     * ./install.sh --clang-completer
+
+###Snips###
