@@ -29,6 +29,13 @@ Bundle 'https://github.com/bling/vim-airline.git'
 " quoting/parenthesizing made simple
 Bundle 'https://github.com/tpope/vim-surround.git'
 
+" Doxygen
+Bundle 'https://github.com/vim-scripts/DoxygenToolkit.vim.git'
+let g:DoxygenToolkit_authorName="Hongjie Zhu"
+
+" Markdown syntax
+Bundle 'Markdown'
+
 " Fuzzy file, buffer, mru, tag, etc finder
 "Bundle 'https://github.com/kien/ctrlp.vim.git'
 

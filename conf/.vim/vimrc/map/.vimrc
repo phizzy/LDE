@@ -7,6 +7,12 @@ nmap <leader>fc :set ft=css<CR>
 nmap <leader>fh :set ft=html<CR>
 nmap <leader>fm :set ft=mako<CR>
 
+" 分屏尺寸切换
+nnoremap <silent> <leader>gl :vertical resize -20<CR>
+nnoremap <silent> <leader>gh :vertical resize +20<CR>
+nnoremap <silent> <leader>gj :resize +20<CR>
+nnoremap <silent> <leader>gk :resize -20<CR>
+
 " Shift-Tab insert real tabs
 inoremap <S-Tab> <C-V><Tab>
 
