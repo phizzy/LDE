@@ -56,3 +56,6 @@ noremap <leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 " ctrl + space 映射到 ctrl+x ctrl+o 进行autocomplete
 "imap <C-Space> <C-x><C-o>
 
+" 执行自定义命令
+nnoremap <leader>etime :echo strftime('%Y-%m-%d %H:%M')<CR>
+
