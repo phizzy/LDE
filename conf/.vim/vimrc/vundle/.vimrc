@@ -45,20 +45,21 @@ Bundle 'Markdown'
 " tern for vim
 "Bundle 'https://github.com/marijnh/tern_for_vim.git'
 
-""" Vim plugin that displays tags in a window, ordered by class etc
-""Bundle 'https://github.com/majutsushi/tagbar.git'
-""nmap <leader>st :TagbarToggle<CR>
-""
-""" Inserts matching bracket, paren, brace or quote
-""""Bundle 'https://github.com/vim-scripts/AutoClose.git'
-""" Display function name in the title bar
-""Bundle 'ctags.vim'
-""
-""" Source code browser (supports C/C++, java, perl, python, tcl, sql, php, etc)
-""" To automatically update the ctags file when a file is written
-""" <C-]>, vim will jump to function’s definition
-""" press <C-t> to climb back up the tree
-"""Bundle 'taglist.vim'
+" Inserts matching bracket, paren, brace or quote
+""Bundle 'https://github.com/vim-scripts/AutoClose.git'
+
+" Display function name in the title bar
+"Bundle 'ctags.vim'
+
+" Source code browser (supports C/C++, java, perl, python, tcl, sql, php, etc)
+" To automatically update the ctags file when a file is written
+" <C-]>, vim will jump to function’s definition
+" press <C-t> to climb back up the tree
+Bundle 'taglist.vim'
+let Tlist_Exit_OnlyWindow = 1 
+let Tlist_Use_Right_Window = 1
+nmap <leader>st :TlistToggle<CR>
+
 ""function! DelTagOfFile(file)
 ""  let fullpath = a:file
 ""  let cwd = getcwd()
