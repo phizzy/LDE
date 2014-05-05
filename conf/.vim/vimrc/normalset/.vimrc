@@ -20,7 +20,7 @@ set cursorline              " 突出显示当前行
 
 set encoding=utf-8
 " set fileencodings=utf-8,gb2312,gbk
-set fileformats=unix,dos,mac
+set fileformats=mac,unix,dos
 set foldclose=all           " 设置为自动关闭折叠                           
 set foldcolumn=0            " 设置折叠区域的宽度
 " set foldenable              " 开始折叠
