@@ -1,6 +1,6 @@
 " 光标取词
 function! Get_cursor_word() 
-    let expl=system('sdcv --utf8-output --data-dir=~/stardict/dic -c -n ' . 
+    let expl=system('sdcv --utf8-output --data-dir=~/stardict/dic -n ' . 
                 \  expand("<cword>")) 
     windo if 
                 \ expand("%")=="diCt-tmp" | 
