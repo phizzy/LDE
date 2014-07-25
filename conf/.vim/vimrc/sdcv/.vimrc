@@ -15,6 +15,8 @@ let sdcv_readme=expand('~/.stardict/dic/README.md')
 if !filereadable(sdcv_readme)
     echo "Downloading SDCV dict..."
     echo ""
+    silent !sudo apt-get update
+    silent !sudo apt-get install sdcv
     silent !git clone https://github.com/pihizi/sdcv-dict.git ~/.stardict/dic
 endif
 
