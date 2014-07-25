@@ -76,8 +76,6 @@ alias vd='cd ~/VagrantEnv && echo "Warn: 目录切换至~/VagrantEnv" && vagrant
 export EDITOR=vim
 
 export PATH=$HOME/.bin:$PATH
-#export CVSROOT=:pserver:liyb@172.18.23.201:/data/cvsroot/
-export CVSROOT=:pserver:lichengyin@newcvs.baidu.com:/data/cvsroot
 #export PS1="\n\e[1;37m[\e[m\e[1;32m\u\e[m\e[1;33m@\e[m\e[1;35m\h\e[m \e[4m\`pwd\`\e[m\e[1;37m]\e[m\e[1;36m\n\e[m\\$ "
 #export PS1="\n\e[1;37m[\e[m\e[1;32m\u\e[m\e[1;33m@\e[m\e[1;35m\h\e[m1;37m]$ "
 #export PS1="\[\e[36;1m\]\u@\[\e[32;1m\]\H:~$\[\e[0m\] "
