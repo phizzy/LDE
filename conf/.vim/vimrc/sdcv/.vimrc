@@ -10,6 +10,14 @@ function! Get_cursor_word()
     1s/^/\=expl/ 
     1 
 endfunction 
+
+let sdcv_readme=expand('~/.stardict/dic/README.md')
+if !filereadable(sdcv_readme)
+    echo "Downloading SDCV dict..."
+    echo ""
+    silent !git clone https://github.com/pihizi/sdcv-dict.git ~/.stardict/dic
+endif
+
 nmap F :call Get_cursor_word()<CR>
 
 
