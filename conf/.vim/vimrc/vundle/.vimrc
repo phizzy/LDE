@@ -1,6 +1,16 @@
 " 打开文件类型检测, vundle 要求必须关闭
 filetype off
 
+let iCanHanzVundle=1
+let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
+if !filereadable(vundle_readme)
+    echo "Installing Vundle..."
+    echo ""
+    silent !mkdir -p ~/.vim/bundle
+    silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+    let iCanHanzVundle=0
+endif
+
 " vundle
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
@@ -81,6 +91,12 @@ nmap <leader>st :TlistToggle<CR>
 ""autocmd BufWritePost *.php call UpdateTags()
 """set tags=./tags,tags
 ""
+
+if iCanHanzVundle == 0
+    echo "Installing Bundles, please ignore key map error messages"
+    echo ""
+    :BundleInstall
+endif
 
 " 打开插件功能和缩进功能 vundle required
 filetype plugin indent on
