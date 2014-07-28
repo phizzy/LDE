@@ -1,3 +1,4 @@
+" 该文件内所有的自定义快捷键，均以<Space>(空格键)唤醒
 " 打开文件类型检测, vundle 要求必须关闭
 filetype off
 
@@ -28,7 +29,7 @@ let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 let g:UltiSnipsSnippetDirectories = ['CustomSnips', 'UltiSnips']
 
 " JS代码格式化插件；
-nnoremap <silent> <leader>_jb :call g:_Jsbeautify()<cr>
+nnoremap <silent> <Space>js :call g:_Jsbeautify()<cr>
 Bundle '_jsbeautify'
 
 " vim plugins for HTML and CSS hi-speed coding
@@ -58,18 +59,17 @@ Bundle 'Markdown'
 " Inserts matching bracket, paren, brace or quote
 ""Bundle 'https://github.com/vim-scripts/AutoClose.git'
 
-" Display function name in the title bar
-"Bundle 'ctags.vim'
 
-" Source code browser (supports C/C++, java, perl, python, tcl, sql, php, etc)
-" To automatically update the ctags file when a file is written
 " <C-]>, vim will jump to function’s definition
 " press <C-t> to climb back up the tree
 Bundle 'taglist.vim'
 let Tlist_Exit_OnlyWindow = 1 
 let Tlist_Use_Right_Window = 1
-nmap <leader>st :TlistToggle<CR>
+"nmap <leader>st :TlistToggle<CR>
+nnoremap <Space>stl :TlistToggle<CR>
 
+"Bundle 'ctags.vim'
+""" To automatically update the ctags file when a file is written
 ""function! DelTagOfFile(file)
 ""  let fullpath = a:file
 ""  let cwd = getcwd()

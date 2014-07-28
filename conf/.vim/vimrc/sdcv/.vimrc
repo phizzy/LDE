@@ -1,3 +1,4 @@
+" 该文件内所有的自定义快捷键，均已<Space>(空格键)唤醒
 " 光标取词
 function! Get_cursor_word() 
     let expl=system('sdcv --utf8-output --data-dir=~/stardict/dic -n ' . 
@@ -20,6 +21,6 @@ if !filereadable(sdcv_readme)
     silent !git clone https://github.com/pihizi/sdcv-dict.git ~/.stardict/dic
 endif
 
-nmap F :call Get_cursor_word()<CR>
+nmap <Space>fy :call Get_cursor_word()<CR>
 
 

@@ -45,7 +45,10 @@ nnoremap <silent> <leader>gx :exec pihizi:WindowAutoResize('x')<CR>
 nnoremap <silent> <leader>gy :exec pihizi:WindowAutoResize('y')<CR>
 
 " 打开光标先的文件
-nnoremap <silent> <leader>gf <C-w>f<CR>
+" http://vim.wikia.com/wiki/Open_file_under_cursor
+" gf默认在当前窗口打开文件
+" <C-w>gf: 在新tab打开
+nnoremap <silent> gf <C-w>gf<CR>
 
 " Shift-Tab insert real tabs
 inoremap <S-Tab> <C-V><Tab>
