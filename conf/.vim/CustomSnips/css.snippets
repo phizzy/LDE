@@ -3,7 +3,14 @@
 ###########################################################################
 
 # IE hack start
-snippet ie8- "IE8-: Media Query Hacks"
+snippet ie7- "IE7-: Media Query Hacks, include ie7"
+/* IE7- */
+@media screen\9 {
+	${0:code segment}
+}
+endsnippet
+
+snippet ie8- "IE8-: Media Query Hacks, include ie8"
 /* IE8- */
 @media \0screen\,screen\9 {
 	${0:code segment}
@@ -17,15 +24,14 @@ snippet ie8 "IE8 only: Media Query Hacks"
 }
 endsnippet
 
-snippet ie7- "IE7-: Media Query Hacks"
-/* IE7- */
-@media screen\9 {
+snippet ie9+ "IE9+: Media Query Hacks, include ie9"
+@media screen and (min-width:0\0) {
 	${0:code segment}
 }
 endsnippet
 
-snippet ie10 "IE10 only: Media Query Hacks"
-/* IE10 only */
+snippet ie10+ "IE10+: Media Query Hacks, include ie10"
+/* IE10+ */
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
 	${0:code segment}
 }
