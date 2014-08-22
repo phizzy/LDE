@@ -32,6 +32,14 @@ let g:UltiSnipsSnippetDirectories = ['CustomSnips', 'UltiSnips']
 nnoremap <silent> <Space>js :call g:_Jsbeautify()<cr>
 Bundle '_jsbeautify'
 
+" jshint
+if !executable('jshint')
+    echo "Installing jshint..."
+    echo ""
+    silent !sudo npm install -g jshint
+endif
+Bundle 'jshint.vim'
+
 " vim plugins for HTML and CSS hi-speed coding
 Bundle 'Emmet.vim'
 " lean & mean status/tabline for vim that's light as air
@@ -60,6 +68,34 @@ Bundle 'Markdown'
 ""Bundle 'https://github.com/vim-scripts/AutoClose.git'
 
 
+if !executable('ctags')
+    echo "Installing ctags..."
+    echo ""
+    silent !sudo apt-get install ctags
+endif
+" To automatically update the ctags file when a file is written
+function! DelTagOfFile(file)
+  let fullpath = a:file
+  let cwd = getcwd()
+  let tagfilename = cwd . "/tags"
+  let f = substitute(fullpath, cwd . "/", "", "")
+  let f = escape(f, './')
+  let cmd = 'sed -i "/' . f . '/d" "' . tagfilename . '"'
+  let resp = system(cmd)
+endfunction
+function! UpdateTags()
+  let f = expand("%:p")
+  let cwd = getcwd()
+  let tagfilename = cwd . "/tags"
+  let cmd = 'ctags -a -f ' . tagfilename . ' --c++-kinds=+p --fields=+iaS --extra=+q ' . '"' . f . '"'
+  call DelTagOfFile(f)
+  let resp = system(cmd)
+endfunction
+"autocmd BufWritePost *.js call UpdateTags()
+autocmd BufWritePost *.php call UpdateTags()
+set tags=./tags,tags
+
+
 " <C-]>, vim will jump to function’s definition
 " press <C-t> to climb back up the tree
 Bundle 'taglist.vim'
@@ -67,30 +103,6 @@ let Tlist_Exit_OnlyWindow = 1
 let Tlist_Use_Right_Window = 1
 "nmap <leader>st :TlistToggle<CR>
 nnoremap <Space>stl :TlistToggle<CR>
-
-"Bundle 'ctags.vim'
-""" To automatically update the ctags file when a file is written
-""function! DelTagOfFile(file)
-""  let fullpath = a:file
-""  let cwd = getcwd()
-""  let tagfilename = cwd . "/tags"
-""  let f = substitute(fullpath, cwd . "/", "", "")
-""  let f = escape(f, './')
-""  let cmd = 'sed -i "/' . f . '/d" "' . tagfilename . '"'
-""  let resp = system(cmd)
-""endfunction
-""function! UpdateTags()
-""  let f = expand("%:p")
-""  let cwd = getcwd()
-""  let tagfilename = cwd . "/tags"
-""  let cmd = 'ctags -a -f ' . tagfilename . ' --c++-kinds=+p --fields=+iaS --extra=+q ' . '"' . f . '"'
-""  call DelTagOfFile(f)
-""  let resp = system(cmd)
-""endfunction
-"""autocmd BufWritePost *.js call UpdateTags()
-""autocmd BufWritePost *.php call UpdateTags()
-"""set tags=./tags,tags
-""
 
 if iCanHanzVundle == 0
     echo "Installing Bundles, please ignore key map error messages"
@@ -100,3 +112,4 @@ endif
 
 " 打开插件功能和缩进功能 vundle required
 filetype plugin indent on
+
