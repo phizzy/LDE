@@ -33,6 +33,7 @@ nnoremap <silent> <Space>js :call g:_Jsbeautify()<cr>
 Bundle '_jsbeautify'
 
 " jshint
+" 执行JSHint之后，如果vim没有强制刷新，control-L可强制刷新
 if !executable('jshint')
     echo "Installing jshint..."
     echo ""
@@ -73,6 +74,7 @@ if !executable('ctags')
     echo ""
     silent !sudo apt-get install ctags
 endif
+Bundle 'ctags.vim'
 " To automatically update the ctags file when a file is written
 function! DelTagOfFile(file)
   let fullpath = a:file
@@ -82,6 +84,23 @@ function! DelTagOfFile(file)
   let f = escape(f, './')
   let cmd = 'sed -i "/' . f . '/d" "' . tagfilename . '"'
   let resp = system(cmd)
+endfunction
+function! UpdateParentTags()
+  let cwd = getcwd()
+  let tname = "/tags"
+  let parentPath = fnamemodify(cwd, ':h')
+  let f = expand("%:p")
+  while 1
+      if parentPath=='/'
+          break
+      endif
+      if filereadable(parentPath . tname)
+          let cmd = 'ctags -a -f ' . parentPath . tname . ' --c++-kinds=+p --fields=+iaS --extra=+q ' . '"' . f . '"'
+          call DelTagOfFile(parentPath . tname)
+          let resp = system(cmd)
+      endif
+      let parentPath = fnamemodify(parentPath, ':h')
+  endwhile
 endfunction
 function! UpdateTags()
   let f = expand("%:p")
@@ -93,6 +112,7 @@ function! UpdateTags()
 endfunction
 "autocmd BufWritePost *.js call UpdateTags()
 autocmd BufWritePost *.php call UpdateTags()
+" 层级查找tags文件
 set tags=./tags,tags
 
 
