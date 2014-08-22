@@ -112,6 +112,8 @@ function! UpdateTags()
 endfunction
 "autocmd BufWritePost *.js call UpdateTags()
 autocmd BufWritePost *.php call UpdateTags()
+" 需要手动在开发目录的更目录执行下面一行命令，生成原始的tags库
+"" ctags -R *.php --c++-kinds=+p --fields=+iaS --extra=+q
 " 层级查找tags文件
 set tags=./tags,tags
 
@@ -123,6 +125,10 @@ let Tlist_Exit_OnlyWindow = 1
 let Tlist_Use_Right_Window = 1
 "nmap <leader>st :TlistToggle<CR>
 nnoremap <Space>stl :TlistToggle<CR>
+
+""" php-cs-fix
+""Bundle 'stephpy/vim-php-cs-fixer'
+""nnoremap <Space>psf :call PhpCsFixerFixFile()<CR>
 
 if iCanHanzVundle == 0
     echo "Installing Bundles, please ignore key map error messages"
